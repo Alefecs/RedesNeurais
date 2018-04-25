@@ -19,7 +19,7 @@ public class NeuronioSigmoide extends Neuronio{
 		double derivadaSigmoideLogistica = 0;
 		
 		for(int i = 0 ; i < pesos.length;i++) {
-			derivadaSigmoide = saidaCalculada[i]*(saidaCalculada[i] - 1);
+			derivadaSigmoideLogistica = saidaCalculada[i]*(saidaCalculada[i] - 1);
 			pesos[i] = pesos[i] + alpha * (saidaDesejada[i] - saidaCalculada[i])*derivadaSigmoideLogistica;
 			
 		}
