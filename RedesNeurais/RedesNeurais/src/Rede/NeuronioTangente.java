@@ -18,7 +18,10 @@ public class NeuronioTangente extends Neuronio{
 		
 		for(int i = 0 ; i < pesos.length;i++) {
 			derivadaTangenteHiperbolica = (1 - saidaCalculada[i]*saidaCalculada[i]);
-			pesos[i] = pesos[i] + alpha * (saidaDesejada[i] - saidaCalculada[i])*derivadaTangenteHiperbolica;
+			if(i == 0)
+				pesos[i] = pesos[i] + alpha * (saidaDesejada[i] - saidaCalculada[i])*derivadaTangenteHiperbolica;
+			else	
+				pesos[i] = pesos[i] + alpha * (saidaDesejada[i] - saidaCalculada[i])*entrada[i]*derivadaTangenteHiperbolica;
 			
 		}
 	}

@@ -11,12 +11,14 @@ public class NeuronioLinear extends Neuronio{
 		return net;
 	}
 	
-	public void atualizacaoPadraoDePeso(double[] entrada,double alpha,double[] saidaDesejada,double[] saidaCalculada ) {
+	public void atualizacaoPadraoDePeso(double[] entrada,double alpha,double saidaDesejada,double saidaCalculada ) {
 		//alpha é a taxa de aprendizagem da rede
 		
 		double derivadaLinear = 1;
-		for(int i = 0 ; i < pesos.length;i++) 
-			pesos[i] = pesos[i] + alpha * (saidaDesejada[i] - saidaCalculada[i])*derivadaLinear;	
+		pesos[0] = pesos[0] + alpha * (saidaDesejada - saidaCalculada)*derivadaLinear;
+		
+		for(int i = 1 ; i < pesos.length;i++) 
+			pesos[i] = pesos[i] + alpha * (saidaDesejada - saidaCalculada)*entrada[i - 1]*derivadaLinear;	
 	}
 	/*
 	public double attPesoBatch(double[] entrada,double taxaDeAprendizagem) {

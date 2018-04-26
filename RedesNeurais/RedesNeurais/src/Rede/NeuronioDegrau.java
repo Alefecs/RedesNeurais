@@ -10,11 +10,17 @@ public class NeuronioDegrau extends Neuronio{
 		else
 			return 0;
 	}
-	public void atualizacaoPadraoDePeso(double[] entrada,double alpha,double[] saidaDesejada,double[] saidaCalculada ) {
+	public void atualizacaoPadraoDePeso(double[] entrada,double alpha,double saidaDesejada,double saidaCalculada ) {
 		//alpha é a taxa de aprendizagem da rede
 		
-		for(int i = 0 ; i < pesos.length;i++) 
-			pesos[i] = pesos[i] + alpha * (saidaDesejada[i] - saidaCalculada[i])*entrada[i];
+		//Bias - Alteração de peso para o limiar.
+		pesos[0] = pesos[0] + alpha * (saidaDesejada - saidaCalculada)*1;	
+		System.out.println("	w10: " + pesos[0]);
+		
+		for(int i = 1 ; i < pesos.length;i++) {
+			pesos[i] = pesos[i] + alpha * (saidaDesejada - saidaCalculada)*entrada[i - 1];
+			System.out.println("	w1"+i+ ": "  + pesos[i]);
+		}
 	}
 	
 }
