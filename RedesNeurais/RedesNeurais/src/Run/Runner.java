@@ -28,10 +28,11 @@ public class Runner {
 		double semente[] = {0,3,3};
 		List<Double> eMedioQuadratico = new ArrayList<>();
 		double eMQ = 0;
+		//para neuronio degrau
 		int contsainda = 0;
 		//Passa como argumento o tamanho da coluna,que representa a quantidade de entrada.
 		//O +1 é a entrada adicional o bias
-		
+		String a ="";
 		//semente = geradorDePesos(entradasMatriz[0].length + 1);
 		
 		
@@ -50,10 +51,18 @@ public class Runner {
 				
 				saidaCalculada = perceptron.ativacao(entradasMatriz[exemplo]);
 				
-				if(saidaCalculada == 1 ) {
-				
+				if(saidaCalculada != saidaDesejada[exemplo] ) {
+					
 					perceptron.atualizacaoPadraoDePeso(entradasMatriz[exemplo], 1, saidaDesejada[exemplo], saidaCalculada);
 					contsainda++;
+				}else {
+					a = perceptron.mostrarPeso(0);
+					System.out.println("	w10 : "  + a);
+					a = perceptron.mostrarPeso(1);
+					System.out.println("	w11 : "  + a);
+					a = perceptron.mostrarPeso(2);
+					System.out.println("	w12 : "  + a);
+					
 				}
 				//calculo de Erro;
 				eQuadratico[exemplo] = Math.pow((saidaDesejada[exemplo] - saidaCalculada), 2);
@@ -71,8 +80,29 @@ public class Runner {
 			eMedioQuadratico.add(eMQ / eQuadratico.length);
 			
 			System.out.println("	erroMedioQuadratico: " + eMedioQuadratico.get(ciclo));
-			
+
 			if(contsainda == 0) {
+				System.out.println("\n Sementes:");
+				System.out.println("	w10 : "  + semente[0]);
+				System.out.println("	w11 : "  + semente[1]);
+				System.out.println("	w12 : "  + semente[2]);
+				System.out.println("\n Pesos Gerados:");
+				a = perceptron.mostrarPeso(0);
+				System.out.println("	w10 : "  + a);
+				a = perceptron.mostrarPeso(1);
+				System.out.println("	w11 : "  + a);
+				a = perceptron.mostrarPeso(2);
+				System.out.println("	w12 : "  + a);
+				
+				System.out.println("\n Resultado Final:");
+				saidaCalculada = perceptron.ativacao(entradasMatriz[0]);
+				System.out.println("	entradas: 0 0 /saida: "  + saidaCalculada);
+				saidaCalculada = perceptron.ativacao(entradasMatriz[1]);
+				System.out.println("	entradas: 0 1 /saida: "  + saidaCalculada);
+				saidaCalculada = perceptron.ativacao(entradasMatriz[2]);
+				System.out.println("	entradas: 1 0 /saida: "  + saidaCalculada);
+				saidaCalculada = perceptron.ativacao(entradasMatriz[3]);
+				System.out.println("	entradas: 1 1 /saida: "  + saidaCalculada);
 				break;
 			}
 			contsainda=0;
