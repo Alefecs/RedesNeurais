@@ -6,7 +6,7 @@ public class NeuronioLinear extends Neuronio{
 	
 
 	public double ativacao(double[] entradas) {
-		double net = somatorio(entradas);
+		double net = funcao(entradas);
 		
 		return net;
 	}
@@ -14,11 +14,15 @@ public class NeuronioLinear extends Neuronio{
 	public void atualizacaoPadraoDePeso(double[] entrada,double alpha,double saidaDesejada,double saidaCalculada ) {
 		//alpha é a taxa de aprendizagem da rede
 		
-		double derivadaLinear = 1;
-		pesos[0] = pesos[0] + alpha * (saidaDesejada - saidaCalculada)*derivadaLinear;
+
+		for(int i = 0 ; i < pesos.length;i++){
+			if(i == 0)
+				pesos[0] = pesos[0] + alpha * (saidaDesejada - saidaCalculada);	
+			else
+				pesos[i] = pesos[i] + alpha * (saidaDesejada - saidaCalculada)*entrada[i - 1];
 		
-		for(int i = 1 ; i < pesos.length;i++) 
-			pesos[i] = pesos[i] + alpha * (saidaDesejada - saidaCalculada)*entrada[i - 1]*derivadaLinear;	
+			System.out.println("	w1"+ i + ": "  + pesos[i]);
+		}
 	}
 	/*
 	public double attPesoBatch(double[] entrada,double taxaDeAprendizagem) {
