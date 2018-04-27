@@ -13,9 +13,13 @@ public abstract class Neuronio {
 		for(int i = 0; i < semente.length; i++)
 			pesos[i] = semente[i];
 	}
+	public String mostrarPeso(int pos) {
+		String mostra = String.valueOf(pesos[pos]);
+		return mostra;
+	}
 	
 	
-	protected double somatorio(double[] entradas) {
+	public double funcao(double[] entradas) {
 		double net = 0;
 		//contadores
 		int quantidadeDeEntradas = entradas.length;
@@ -28,9 +32,9 @@ public abstract class Neuronio {
 				JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		
-		for(int contador = 0 ; contador < quantidadeDeEntradas; contador ++) {
-			net = net + entradas[contador]*pesos[contador];
+			net = net + 1*pesos[0];
+		for(int contador = 1 ; contador < quantidadeDePesos; contador ++) {
+			net = net + entradas[contador - 1]*pesos[contador];
 			
 		}
 
