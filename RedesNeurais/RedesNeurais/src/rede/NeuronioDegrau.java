@@ -1,4 +1,4 @@
-package Rede;
+package rede;
 
 public class NeuronioDegrau extends Neuronio{
 	@Override

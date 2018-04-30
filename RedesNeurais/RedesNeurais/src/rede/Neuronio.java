@@ -1,4 +1,4 @@
-package Rede;
+package rede;
 
 import javax.swing.JOptionPane;
 
