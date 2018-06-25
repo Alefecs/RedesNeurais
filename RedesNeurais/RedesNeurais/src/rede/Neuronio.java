@@ -1,11 +1,16 @@
 package rede;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public abstract class Neuronio {
 	//conexão do neuronio com outro(s) relação a entrada
 	protected double[] pesos;
+	protected double delta;
 
+
+	
 	public abstract double ativacao(double[] entradas);
 	
 	public void pesosInicias(double[] semente) {
@@ -13,11 +18,14 @@ public abstract class Neuronio {
 		for(int i = 0; i < semente.length; i++)
 			pesos[i] = semente[i];
 	}
+	
+
+	//public void pesosIniciasMLP(double[] );
+	
 	public String mostrarPeso(int pos) {
 		String mostra = String.valueOf(pesos[pos]);
 		return mostra;
 	}
-	
 	
 	public double funcao(double[] entradas) {
 		double net = 0;
