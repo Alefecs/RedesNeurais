@@ -7,7 +7,6 @@ import java.util.List;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import br.com.grafico.Grafico;
-import rede.Neuronio;
 import rede.NeuronioDegrau;
 import rede.NeuronioLinear;
 
